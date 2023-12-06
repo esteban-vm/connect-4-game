@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-slate-900;
+  }
+
+  main {
+    @apply flex h-screen flex-col items-center justify-center pointer-coarse:landscape:flex-row;
+  }
+}
