@@ -1,9 +1,16 @@
 import type { PlayerState, Position } from '@/types'
 
+type StateChecker = (board: PlayerState[], position: Position, player: PlayerState) => boolean
+type MoveHandler<T extends boolean = true> = (board: PlayerState[]) => T extends true ? Position : Position | null
 type Line = [Position, Position, Position, Position]
-type Move = { positions: Line; max: 4 | 16; step: 1 | 4 | 16 }
 
-export const isWin = (board: PlayerState[], position: Position, player: PlayerState) => {
+interface Move {
+  positions: Line
+  max: 4 | 16
+  step: 1 | 4 | 16
+}
+
+export const isWin: StateChecker = (board, position, player) => {
   board = [...board]
   board[position] = player
 
@@ -28,14 +35,14 @@ export const isWin = (board: PlayerState[], position: Position, player: PlayerSt
   return false
 }
 
-export const isDraw = (board: PlayerState[], position: Position, player: PlayerState) => {
+export const isDraw: StateChecker = (board, position, player) => {
   board = [...board]
   board[position] = player
   const count = board.reduce<number>((previousState, currentState) => +(currentState === 0) + previousState, 0)
   return count === 0
 }
 
-const getComputedMove = (board: PlayerState[]): Position | undefined => {
+const getComputedMove: MoveHandler<false> = (board) => {
   const moves: Move[] = [
     // vertical
     {
@@ -98,9 +105,11 @@ const getComputedMove = (board: PlayerState[]): Position | undefined => {
       }
     }
   }
+
+  return null
 }
 
-const getRandomComputedMove = (board: PlayerState[]): Position => {
+const getRandomComputedMove: MoveHandler = (board) => {
   const validPositions: Position[] = []
 
   for (let index = 0; index < board.length; index++) {
@@ -113,8 +122,8 @@ const getRandomComputedMove = (board: PlayerState[]): Position => {
   return validPositions[randomMove]
 }
 
-export const makeComputedMove = (board: PlayerState[]): Position => {
+export const makeComputedMove: MoveHandler = (board) => {
   const position = getComputedMove(board)
-  if (position !== undefined) return position
+  if (position !== null) return position
   return getRandomComputedMove(board)
 }
