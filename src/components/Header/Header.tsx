@@ -5,18 +5,14 @@ import styles from './Header.styles'
 const Header: FC = () => {
   const { player, winner, gameState } = useGameContext()
 
-  const renderLabel = () => {
-    switch (gameState) {
-      case 'playing':
-        return `Player ${player} Turn`
-      case 'win':
-        return `Player ${winner} Wins!`
-      case 'draw':
-        return 'Game is a Draw!'
-    }
-  }
+  const label =
+    gameState === 'playing'
+      ? `Player ${player} Turn`
+      : gameState === 'win'
+      ? `Player ${winner} Wins!`
+      : 'Game is a Draw!'
 
-  return <header className={styles.wrapper}>{renderLabel()}</header>
+  return <header className={styles.wrapper}>{label}</header>
 }
 
 export default Header

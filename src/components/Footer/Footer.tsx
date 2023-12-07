@@ -3,15 +3,13 @@ import { useGameContext } from '@/hooks'
 import styles from './Footer.styles'
 
 const Footer: FC = () => {
-  const { restart, suggest } = useGameContext()
+  const { restart, suggest, gameState } = useGameContext()
+  const isPlaying = gameState === 'playing'
 
   return (
     <footer className={styles.wrapper}>
-      <button type='button' onClick={restart} className={styles.button}>
-        Restart
-      </button>
-      <button type='button' onClick={suggest} className={styles.button}>
-        Suggest
+      <button type='button' onClick={isPlaying ? suggest : restart} className={styles.button}>
+        {isPlaying ? 'Suggest' : 'Restart'}
       </button>
     </footer>
   )
