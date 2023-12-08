@@ -1,6 +1,6 @@
 import type { PlayerState, Position } from '@/types'
 
-type StateChecker = (board: PlayerState[], position: Position, player: PlayerState) => boolean
+type StateChecker = (board: PlayerState[]) => boolean
 type MoveHandler<T extends boolean = true> = (board: PlayerState[]) => T extends true ? Position : Position | null
 type Line = [Position, Position, Position, Position]
 
@@ -10,10 +10,7 @@ interface Move {
   step: 1 | 4 | 16
 }
 
-export const isWin: StateChecker = (board, position, player) => {
-  board = [...board]
-  board[position] = player
-
+export const isWin: StateChecker = (board) => {
   const winningLines: Line[] = [
     [0, 1, 2, 3],
     [4, 5, 6, 7],
@@ -27,17 +24,17 @@ export const isWin: StateChecker = (board, position, player) => {
     [3, 6, 9, 12],
   ]
 
-  for (const [c1, c2, c3, c4] of winningLines) {
-    const { [c1]: b1, [c2]: b2, [c3]: b3, [c4]: b4 } = board
-    if (b1 > 0 && b1 === b2 && b2 === b3 && b3 === b4) return true
+  for (const [position1, position2, position3, position4] of winningLines) {
+    const { [position1]: playerIn1, [position2]: playerIn2, [position3]: playerIn3, [position4]: playerIn4 } = board
+    if (playerIn1 !== 0 && playerIn1 === playerIn2 && playerIn2 === playerIn3 && playerIn3 === playerIn4) {
+      return true
+    }
   }
 
   return false
 }
 
-export const isDraw: StateChecker = (board, position, player) => {
-  board = [...board]
-  board[position] = player
+export const isDraw: StateChecker = (board) => {
   const count = board.reduce<number>((previousState, currentState) => +(currentState === 0) + previousState, 0)
   return count === 0
 }

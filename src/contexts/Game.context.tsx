@@ -35,21 +35,21 @@ export const GameContextProvider: FC<{ children: ReactNode }> = (props) => {
     if (board[position] !== 0 || gameState !== 'playing') return
     navigator.vibrate?.(10)
 
-    if (isWin(board, position, player)) {
+    const newBoard = board.map((prevPlayer, prevPosition) => (prevPosition === position ? player : prevPlayer))
+
+    setBoard(newBoard)
+    setPlayer(player === 1 ? 2 : 1)
+
+    if (isWin(newBoard)) {
       setGameState('win')
       setWinner(player)
+      return
     }
 
-    if (isDraw(board, position, player)) {
+    if (isDraw(newBoard)) {
       setGameState('draw')
       setWinner(0)
     }
-
-    setBoard((prevBoard) =>
-      prevBoard.map((prevPlayer, prevPosition) => (prevPosition === position ? player : prevPlayer))
-    )
-
-    setPlayer((prevPlayer) => (prevPlayer === 1 ? 2 : 1))
   }
 
   const restart = () => {
