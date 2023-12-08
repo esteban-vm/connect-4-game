@@ -35,7 +35,9 @@ export const GameContextProvider: FC<{ children: ReactNode }> = (props) => {
     if (board[position] !== 0 || gameState !== 'playing') return
     navigator.vibrate?.(10)
 
-    const newBoard = board.map((prevPlayer, prevPosition) => (prevPosition === position ? player : prevPlayer))
+    const newBoard = board.map((previousPlayer, previousPosition) =>
+      previousPosition === position ? player : previousPlayer
+    )
 
     setBoard(newBoard)
     setPlayer(player === 1 ? 2 : 1)

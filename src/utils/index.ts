@@ -26,6 +26,7 @@ export const isWin: StateChecker = (board) => {
 
   for (const [position1, position2, position3, position4] of winningLines) {
     const { [position1]: playerIn1, [position2]: playerIn2, [position3]: playerIn3, [position4]: playerIn4 } = board
+
     if (playerIn1 !== 0 && playerIn1 === playerIn2 && playerIn2 === playerIn3 && playerIn3 === playerIn4) {
       return true
     }
@@ -35,8 +36,12 @@ export const isWin: StateChecker = (board) => {
 }
 
 export const isDraw: StateChecker = (board) => {
-  const count = board.reduce<number>((previousState, currentState) => +(currentState === 0) + previousState, 0)
-  return count === 0
+  const player = board.reduce(
+    (previousState, currentState) => <PlayerState>(Number(currentState === 0) + previousState),
+    0
+  )
+
+  return player === 0
 }
 
 const getComputedMove: MoveHandler<false> = (board) => {
