@@ -9,7 +9,10 @@ interface CellProps {
 
 const Cell: FC<CellProps> = ({ position, player }) => {
   const { makeMove, gameState } = useGameContext()
-  return <button className={styles.wrapper(player)} onClick={() => makeMove(position)} disabled={gameState === 'win'} />
+
+  return (
+    <button className={styles.wrapper(player)} onClick={() => makeMove(position)} disabled={gameState !== 'playing'} />
+  )
 }
 
 export default Cell
