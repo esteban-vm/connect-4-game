@@ -13,13 +13,19 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives",
     "lint:fix": "eslint --fix .",
     "preview": "vite preview",
-    "icons": "rm -rf public/icons/* && pwa-asset-generator icon.png public/icons -i index.html -t png -e -f -w -o false"
+    "icons": "rm -rf public/icons/* && pwa-asset-generator icon.png public/icons -i index.html -t png -e -f -w -o false",
+    "test:e2e": "playwright test",
+    "test:ui": "playwright test --ui",
+    "test:gen": "playwright codegen",
+    "test:report": "playwright show-report"
   },
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "@playwright/test": "^1.40.1",
+    "@types/node": "^20.10.4",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
     "@typescript-eslint/eslint-plugin": "^6.0.0",

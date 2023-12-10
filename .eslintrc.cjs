@@ -39,5 +39,4 @@ module.exports = {
     'import/no-named-as-default': 'off',
     'tailwindcss/classnames-order': 'off',
   },
-  globals: { vi: true },
 }
