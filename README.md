@@ -1,27 +1,23 @@
-# React + TypeScript + Vite
+# Connect 4 Game
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+[Link](https://connect-4-game-six.vercel.app/ 'Click to enter')
 
-Currently, two official plugins are available:
+## Main dependencies:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- [React](https://es.react.dev/ 'React')
+- [Vite](https://v2.vitejs.dev/ 'Vite')
+- [TypeScript](https://www.typescriptlang.org/ 'TypeScript')
+- [TailwindCSS](https://tailwindcss.com/ 'TailwindCSS')
+- [Playwright](https://playwright.dev/ 'Playwright')
+- [ESLint](https://eslint.org/ 'ESLint')
+- [Prettier](https://prettier.io/ 'Prettier')
 
-## Expanding the ESLint configuration
+## Controls:
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+_the game can be played between two or against the computer_
 
-- Configure the top-level `parserOptions` property like this:
+## License:
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
+This project is released under the MIT [LICENSE](/LICENSE 'License')
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+![Connect 4 Game screenshot](/screenshot.jpeg 'Connect 4 Game screenshot')
