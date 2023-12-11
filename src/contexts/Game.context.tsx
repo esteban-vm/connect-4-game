@@ -45,10 +45,7 @@ export const GameContextProvider: FC<{ children: ReactNode }> = (props) => {
     if (isWin(newBoard)) {
       setGameState('win')
       setWinner(player)
-      return
-    }
-
-    if (isDraw(newBoard)) {
+    } else if (isDraw(newBoard)) {
       setGameState('draw')
       setWinner(0)
     }
